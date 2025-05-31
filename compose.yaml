@@ -1,12 +1,10 @@
 services:
   fsm:
     build:
-      context: ..
+      context: ./fsm
       target: final
     env_file:
       - ../fsm/.env
-    ports:
-      - "$HTTP_PORT:$HTTP_PORT"
     depends_on:
       mongo:
         condition: service_started
@@ -15,12 +13,10 @@ services:
 
   file-storage:
     build:
-      context: ..
+      context: ./file-storage
       target: final
     env_file:
       - ../file-storage/.env
-    ports:
-      - "$HTTP_PORT:$HTTP_PORT"
     depends_on:
       rabbit:
         condition: service_healthy
@@ -29,12 +25,10 @@ services:
 
   auth:
     build:
-      context: ..
+      context: ./auth
       target: final
     env_file:
       - ../auth/.env
-    ports:
-      - "$HTTP_PORT:$HTTP_PORT"
 
   mongo:
     image: mongo
@@ -62,3 +56,21 @@ services:
       interval: 3s
       timeout: 10s
       retries: 10
+
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - "$CADDY_CONFIG:/etc/caddy"
+      - "$CADDY_DATA:/data"
+      - "$CADDY_CONFIG:/config"
+
+volumes:
+  caddy_data:
+  caddy_config:

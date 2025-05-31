@@ -1,0 +1,5 @@
+:80 {
+	reverse_proxy /auth/* auth:3000
+	reverse_proxy /api/* fsm:3000
+	reverse_proxy /fs/* file-storage:3000
+}
