@@ -1,0 +1,9 @@
+[submodule "auth"]
+	path = auth
+	url = https://github.com/StratuStore/auth
+[submodule "file-storage"]
+	path = file-storage
+	url = https://github.com/StratuStore/file-storage
+[submodule "fsm"]
+	path = fsm
+	url = https://github.com/StratuStore/fsm
