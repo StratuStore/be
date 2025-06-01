@@ -1,4 +1,8 @@
 http://:80/* {
+    log {
+        level DEBUG
+    }
+
     handle_path /auth* {
       reverse_proxy auth:3000
     }
