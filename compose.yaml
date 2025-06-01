@@ -4,7 +4,7 @@ services:
       context: ./fsm
       target: final
     env_file:
-      - ../fsm/.env
+      - ./fsm/.env
     depends_on:
       mongo:
         condition: service_started
@@ -16,7 +16,7 @@ services:
       context: ./file-storage
       target: final
     env_file:
-      - ../file-storage/.env
+      - ./file-storage/.env
     depends_on:
       rabbit:
         condition: service_healthy
@@ -28,7 +28,7 @@ services:
       context: ./auth
       target: final
     env_file:
-      - ../auth/.env
+      - ./auth/.env
 
   mongo:
     image: mongo
