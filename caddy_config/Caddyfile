@@ -1,5 +1,11 @@
-:80 {
-	reverse_proxy /auth/* auth:3000
-	reverse_proxy /api/* fsm:3000
-	reverse_proxy /fs/* file-storage:3000
+http://:80/* {
+    handle_path /auth* {
+      reverse_proxy auth:3000
+    }
+    handle_path /api* {
+      reverse_proxy fsm:3000
+    }
+    handle_path /fs* {
+      reverse_proxy file-storage:3000
+    }
 }
