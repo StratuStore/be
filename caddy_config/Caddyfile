@@ -12,4 +12,13 @@ http://:80/* {
     handle_path /fs* {
       reverse_proxy file-storage:3000
     }
+    handle_path /.well-known* {
+      root * /well-known
+      file_server
+    }
+    handle {
+      root * /dist
+      try_files {path} /index.html
+      file_server
+    }
 }

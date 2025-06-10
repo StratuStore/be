@@ -7,3 +7,6 @@
 [submodule "fsm"]
 	path = fsm
 	url = https://github.com/StratuStore/fsm
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/StratuStore/frontend
