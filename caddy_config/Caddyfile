@@ -3,7 +3,7 @@ http://:80/* {
         level DEBUG
     }
 
-    handle_path /auth* {
+    handle_path /sso* {
       reverse_proxy auth:3000
     }
     handle_path /api* {
